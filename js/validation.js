@@ -23,6 +23,7 @@ function checkRequired() {
     });
 
     if(!isError) {
+        
         // checkDuplicateEntry(date, weight, comment);
     }
 }
