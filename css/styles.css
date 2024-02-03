@@ -250,7 +250,7 @@ i {
 /* Card grid container */
 .cards-container {
     height: 100%;
-    margin: 2rem 0;
+    margin: 2rem;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
@@ -268,7 +268,7 @@ i {
     justify-content: space-between;
 }
 
-#author {
+#card-author {
     font-weight: 600;
 }
 
