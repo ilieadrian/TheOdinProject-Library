@@ -1,5 +1,6 @@
 const submitBtn = document.getElementById('submit-btn');
 const form = document.getElementById('form-id');
+let checkbox;
 
 function checkRequired() {
     const formElementsIDs = ['author', 'title'];
@@ -22,7 +23,7 @@ function checkRequired() {
     });
 
     if(!isError) {
-        const checkbox = document.getElementById("read").checked;
+        checkbox = document.getElementById("read").checked;
         const pages = document.getElementById("pages");
 
         addBookToLibrary(author.value, title.value, pages.value, checkbox);
