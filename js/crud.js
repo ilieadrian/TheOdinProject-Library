@@ -12,8 +12,12 @@ function Book(author, title, pages, isRead){
 
 function addBookToLibrary(author, title, pages, checkbox) {
         let newBook = new Book(author, title, pages, checkbox);
-        console.log(author, title, pages, checkbox);
+        myLibrary.push(newBook);
 
+        updateDisplay()
+}
+
+function updateDisplay() {
     if (myLibrary.length > 0) {
         container.innerHTML = ""; // Clear the table only if there is data
         myLibrary.forEach(function(data) {
@@ -32,15 +36,9 @@ function addBookToLibrary(author, title, pages, checkbox) {
             container.appendChild(listItem);
         });
     }
-
-
-
-    myLibrary.push(newBook);
-    console.log(myLibrary)
 }
 
-
-addBookToLibrary();
+updateDisplay()
 
 
 
