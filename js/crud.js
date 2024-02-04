@@ -19,10 +19,12 @@ function addBookToLibrary(author, title, pages, isRead) {
 
 function updateDisplay() {
     if (myLibrary.length > 0) {
-        container.innerHTML = ""; // Clear the table only if there is data
-        myLibrary.forEach(function(book) {
+        container.innerHTML = ""; // Clear the container only if there is data
+        myLibrary.forEach(function(book, index) {
+            let isReadCheck = document.getElementById("read");
             let listItem = document.createElement("div");
             listItem.classList = "card";
+            listItem.setAttribute("data-card-index", index); // Set data-card-index attribute
             listItem.innerHTML = `
             <div class="item" id="card-author">${book.author}</div>
             <div class="item" id="name">Title: ${book.title}</div>
@@ -35,11 +37,28 @@ function updateDisplay() {
             `;
             container.appendChild(listItem);
 
+            isReadCheck.addEventListener('click', function() {
+                const cardIndex = listItem.getAttribute('data-card-index');
+                                toggleIsRead(cardIndex);
+            });
         });
     }
 }
 
+function toggleIsRead(cardIndex) {
+    if (myLibrary[cardIndex].isRead == false) {
+        myLibrary[cardIndex].isRead = true;
+    } else {
+        myLibrary[cardIndex].isRead = false;
+    }
+
+    updateDisplay()
+}
+
 updateDisplay()
+
+
+
 
 
 
