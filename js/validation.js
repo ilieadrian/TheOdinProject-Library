@@ -23,7 +23,7 @@ function checkRequired() {
     });
 
     if(!isError) {
-        checkbox = document.getElementById("read").checked;
+        checkbox = document.getElementById("read-form").checked;
         const pages = document.getElementById("pages");
 
         addBookToLibrary(author.value, title.value, pages.value, checkbox);

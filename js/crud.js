@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 let container = document.getElementById('cards-container');
 let deleteButton = document.getElementById("modal-message-all");
@@ -19,27 +19,37 @@ function addBookToLibrary(author, title, pages, isRead) {
 
 function updateDisplay() {
     if (myLibrary.length > 0) {
-        container.innerHTML = ""; // Clear the container only if there is data
+        container.innerHTML = "";
+
         myLibrary.forEach(function(book, index) {
-            let isReadCheck = document.getElementById("read");
+            
             let listItem = document.createElement("div");
             listItem.classList = "card";
-            listItem.setAttribute("data-card-index", index); // Set data-card-index attribute
+            listItem.setAttribute("data-card-index", index); 
             listItem.innerHTML = `
             <div class="item" id="card-author">${book.author}</div>
             <div class="item" id="name">Title: ${book.title}</div>
             <div class="item" id="pages">Pages: ${book.pages}</div>
             <div class="read-container">
                 <div class="item" id="pages">Read? </div>
-                <input type="checkbox" id="read" name="read-card" value="isRead" ${book.isRead ? `checked` : ''}/>
+                <input type="checkbox" id="read-${index}" name="read-card" value="isRead" ${book.isRead ? `checked` : ''}/>
             </div>
-            <i class="fa-sharp fa-solid fa-trash delete-record"></i>
+            <i class="fa-sharp fa-solid fa-trash delete-record" id="delete-${index}"></i>
+            
             `;
             container.appendChild(listItem);
 
+            let isReadCheck = document.getElementById(`read-${index}`);
+            let deleteBtn = document.getElementById(`delete-${index}`);
+            const cardIndex = listItem.getAttribute('data-card-index');
+
             isReadCheck.addEventListener('click', function() {
-                const cardIndex = listItem.getAttribute('data-card-index');
-                                toggleIsRead(cardIndex);
+                
+                toggleIsRead(cardIndex);
+            });
+            
+            deleteBtn.addEventListener('click', function() {
+                deleteFromLibrary(cardIndex);
             });
         });
     }
@@ -51,6 +61,12 @@ function toggleIsRead(cardIndex) {
     } else {
         myLibrary[cardIndex].isRead = false;
     }
+    
+    updateDisplay()
+}
+
+function deleteFromLibrary(cardIndex) {
+    delete myLibrary[cardIndex];
 
     updateDisplay()
 }
