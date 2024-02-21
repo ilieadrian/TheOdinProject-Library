@@ -3,18 +3,21 @@ let myLibrary = [];
 let container = document.getElementById('cards-container');
 let deleteButton = document.getElementById("modal-message-all");
 
-function Book(author, title, pages, isRead){
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.isRead = isRead;
-}
+class Book {
+    constructor(author, title, pages, checkbox) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.checkbox = checkbox;
+    }
 
-function addBookToLibrary(author, title, pages, isRead) {
-        let newBook = new Book(author, title, pages, isRead);
+    static addBookToLibrary(author, title, pages, checkbox) {
+        let newBook = new Book(author, title, pages, checkbox);
+        console.log(checkbox)
         myLibrary.push(newBook);
 
         updateDisplay()
+    }
 }
 
 function updateDisplay() {
@@ -32,7 +35,7 @@ function updateDisplay() {
             <div class="item" id="pages">Pages: ${book.pages}</div>
             <div class="read-container">
                 <div class="item" id="pages">Read? </div>
-                <input type="checkbox" id="read-${index}" name="read-card" value="isRead" ${book.isRead ? `checked` : ''}/>
+                <input type="checkbox" id="read-${index}" name="read-card" value="isRead" ${book.checkbox ? `checked` : ''}/>
             </div>
             <i class="fa-sharp fa-solid fa-trash delete-record" id="delete-${index}"></i>
             
@@ -44,7 +47,6 @@ function updateDisplay() {
             const cardIndex = listItem.getAttribute('data-card-index');
 
             isReadCheck.addEventListener('click', function() {
-                
                 toggleIsRead(cardIndex);
             });
             

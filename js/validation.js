@@ -24,9 +24,11 @@ function checkRequired() {
 
     if(!isError) {
         checkbox = document.getElementById("read-form").checked;
-        const pages = document.getElementById("pages");
+        let authorValue = document.getElementById("author").value;
+        let titleValue = document.getElementById("title").value;
+        let pagesValue = document.getElementById("pages").value;
 
-        addBookToLibrary(author.value, title.value, pages.value, checkbox);
+        Book.addBookToLibrary(authorValue, titleValue, pagesValue, checkbox);
     }
 }
 
