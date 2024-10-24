@@ -10,8 +10,15 @@ function checkRequired() {
         const inputElement = document.getElementById(elementId);
         const errorTxtElement = document.getElementById(`${elementId}-form-error`);
         const value = inputElement.value.trim();
-        
+        const validity = inputElement.checkValidity();
 
+        if (!validity) {
+            inputElement.setCustomValidity("Field cannot be empty");
+        } else {
+            inputElement.setCustomValidity(""); 
+        }
+        inputElement.reportValidity();
+        
         if (value.length === 0) {
             inputElement.classList.add("error");
             errorTxtElement.classList.add("error");
@@ -20,7 +27,7 @@ function checkRequired() {
             inputElement.classList.remove("error");
             errorTxtElement.classList.remove("error");
         }
-    });
+        });
 
     if(!isError) {
         checkbox = document.getElementById("read-form").checked;

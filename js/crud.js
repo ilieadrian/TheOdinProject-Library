@@ -30,8 +30,8 @@ function updateDisplay() {
             listItem.classList = "card";
             listItem.setAttribute("data-card-index", index); 
             listItem.innerHTML = `
-            <div class="item" id="card-author">${book.author}</div>
-            <div class="item" id="name">Title: ${book.title}</div>
+            <div class="item" id="card-author" minlength="1" required>${book.author}</div>
+            <div class="item" id="name" minlength="1" required>Title: ${book.title}</div>
             <div class="item" id="pages">Pages: ${book.pages}</div>
             <div class="read-container">
                 <div class="item" id="pages">Read? </div>
